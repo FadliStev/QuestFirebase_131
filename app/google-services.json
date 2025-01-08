@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "264957517957",
+    "project_id": "projectpam-ec4e5",
+    "storage_bucket": "projectpam-ec4e5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264957517957:android:14bcb7c8fed5fef643c9ec",
+        "android_client_info": {
+          "package_name": "com.example.activity10"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6v9WY4_6VQvFaO3pmRz86PyDFJsc94No"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
