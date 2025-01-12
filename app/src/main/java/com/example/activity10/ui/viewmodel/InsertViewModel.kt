@@ -1,7 +1,68 @@
 package com.example.activity10.ui.viewmodel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.activity10.model.Mahasiswa
+import com.example.activity10.repository.MahasiswaRepository
+import kotlinx.coroutines.launch
 
+class InsertViewModel (
+    private val mhs: MahasiswaRepository
+): ViewModel(){
+    var uiEvent: InsertUiState by mutableStateOf(InsertUiState())
+        private set
+
+    var uiState: FormState by mutableStateOf(FormState.Idle)
+        private set
+
+    fun updateState(mahasiswaEvent: MahasiswaEvent){
+        uiEvent = uiEvent.copy(
+            insertUiEvent = mahasiswaEvent
+        )
+    }
+
+    fun validateFields(): Boolean{
+        val event = uiEvent.insertUiEvent
+        val errorState = FormErrorState(
+            nim = if(event.nim.isNotEmpty()) null else "Nim tidak boleh kosong",
+            nama = if(event.nama.isNotEmpty()) null else "Nim tidak boleh kosong",
+            jenis_kelamin = if(event.jenis_kelamin.isNotEmpty()) null else "Nim tidak boleh kosong",
+            alamat = if(event.alamat.isNotEmpty()) null else "Nim tidak boleh kosong",
+            kelas = if(event.kelas.isNotEmpty()) null else "Nim tidak boleh kosong",
+            angkatan = if(event.angkatan.isNotEmpty()) null else "Nim tidak boleh kosong",
+        )
+
+        uiEvent = uiEvent.copy(isEntryValid = errorState)
+        return errorState.isValid()
+    }
+
+    fun insertMhs(){
+        if (validateFields()){
+            viewModelScope.launch {
+                uiState = FormState.Loading
+                try {
+                    mhs.insertMahasiswa(uiEvent.insertUiEvent.toMhsModel())
+                    uiState = FormState.Success("Data berhasil disimpan")
+                } catch (e: Exception){
+                    uiState = FormState.Error("Data gagal disimpan")
+                }
+            }
+        } else {
+            uiState = FormState.Error("Data tidak valid")
+        }
+    }
+}
+
+sealed class FormState{
+    object Idle : FormState()
+    object Loading : FormState()
+    data class Success(val message: String) : FormState()
+    data class Error(val message: String) : FormState()
+
+}
 
 data class InsertUiState(
     val insertUiEvent: MahasiswaEvent = MahasiswaEvent(),
