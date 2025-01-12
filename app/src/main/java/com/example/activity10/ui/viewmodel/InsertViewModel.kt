@@ -4,6 +4,12 @@ import com.example.activity10.model.Mahasiswa
 
 
 fun MahasiswaEvent.toMhsModel() : Mahasiswa = Mahasiswa(
+    nim = nim,
+    nama = nama,
+    jenis_kelamin = jenis_kelamin,
+    alamat = nim,
+    kelas = nim,
+    angkatan = nim,
 
 )
 
