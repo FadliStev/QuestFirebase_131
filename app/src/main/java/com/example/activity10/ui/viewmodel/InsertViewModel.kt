@@ -3,6 +3,15 @@ package com.example.activity10.ui.viewmodel
 import com.example.activity10.model.Mahasiswa
 
 
+data class FormErrorState(
+    val nim: String? = null,
+    val nama: String? = null,
+    val jenis_kelamin: String? = null,
+    val alamat: String? = null,
+    val kelas: String? = null,
+    val angkatan: String? = null,
+)
+
 fun MahasiswaEvent.toMhsModel() : Mahasiswa = Mahasiswa(
     nim = nim,
     nama = nama,
