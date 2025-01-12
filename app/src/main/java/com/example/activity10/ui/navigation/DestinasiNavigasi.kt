@@ -1,4 +1,4 @@
-package com.example.activity10.navigation
+package com.example.activity10.ui.navigation
 
 interface DestinasiNavigasi{
     val route: String
