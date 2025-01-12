@@ -3,6 +3,11 @@ package com.example.activity10.ui.viewmodel
 import com.example.activity10.model.Mahasiswa
 
 
+data class InsertUiState(
+    val insertUiEvent: MahasiswaEvent = MahasiswaEvent(),
+    val isEntryValid: FormErrorState = FormErrorState()
+)
+
 data class FormErrorState(
     val nim: String? = null,
     val nama: String? = null,
