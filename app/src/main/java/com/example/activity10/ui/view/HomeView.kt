@@ -173,7 +173,7 @@ fun MhsLayout(
 fun MhsCard(
     mahasiswa: Mahasiswa,
     modifier: Modifier = Modifier,
-    onDeleteClick:(Mahasiswa) -> Unit = {}
+    onDeleteClick:(Mahasiswa) -> Unit = {},
 ){
     Card(
         modifier = modifier,
@@ -210,6 +210,11 @@ fun MhsCard(
                 text = mahasiswa.alamat,
                 style = MaterialTheme.typography.titleMedium
             )
+            Text(
+                text = mahasiswa.judulSkripsi,
+                style = MaterialTheme.typography.titleMedium
+            )
+
 
         }
     }

@@ -25,7 +25,7 @@ class NetworkMahasiswaRepository (
     override suspend fun getMahasiswa(): Flow<List<Mahasiswa>> = callbackFlow {
 
         val mhsCollection = firestore.collection("Mahasiswa")
-            .orderBy("nama",Query.Direction.ASCENDING)
+            .orderBy("nama",Query.Direction.DESCENDING)
             .addSnapshotListener{ value, error ->
 
                 if (value != null){

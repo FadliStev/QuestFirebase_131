@@ -23,11 +23,13 @@ sealed class HomeUiState{
 class HomeViewModel(
     private val mhs: MahasiswaRepository
 ): ViewModel() {
+
     var mhsUiState: HomeUiState by mutableStateOf(HomeUiState.Loading)
         private set
 
     init {
         getMhs()
+
     }
 
     fun getMhs() {
